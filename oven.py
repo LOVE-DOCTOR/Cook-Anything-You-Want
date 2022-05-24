@@ -38,6 +38,12 @@ class Oven:
 
         return self.state
 
+    def setTemp(self, temperature_type: int):
+        if temperature_type == 2:
+
+
+
+
     def startMix(self) -> int:
         Print("What do you want to bake?")
         while True:
@@ -82,17 +88,55 @@ class Oven:
             except ValueError:
                 print("Please select from the options above")
 
-        while True:
-            try:
-                if temperature_type == 1:
+        if temperature_type == 1:
+            while True:
+                try:
                     self.temperature = int(input("Set temperature here(in °C) 0°C - 250°C: "))
+                    if 0 < self.temperature > 250:
+                        print("You can only set a temperature in the given range.")
+                    else:
+                        break
+                except ValueError:
+                    print("Please type in only integer values.")
 
+            Print("Set the timer for the duration you want to bake for.")
 
-            except ValueError:
-                print("Please select from the options above")
+            while True:
+                try:
+                    self.timer = int(input("Set the timer(in minutes): "))
+                    break
+                except ValueError:
+                    print("Please type in only integer values.")
+            print("")
 
-        Print(f"You have now successfully set the temperature of the oven to {self.temperature}°C")
+            Print(f"Temperature set to {self.temperature}°C")
+            Print(f"Timer set to {self.timer}")
+            Print("Final mixture is poured into a container of the desired shape.")
+            Print("Placing the container into the oven.")
+            Print("Baking...")
+            Print("Please wait!")
+            time.sleep(60)
 
+            if self.temperature == 180 and (self.timer == 30 or self.timer == 35):
+                Print("Ping!")
+                Print("Your Homemade cake is now ready.")
+                Print("Great job, Baker.")
+
+            elif self.temperature > 180 and (self.timer > 35):
+                Print("Ping!")
+                Print("You must have left your cake for too long in the oven or set a temperature too hot.")
+                Print("Your burnt homemade cake is now ready.")
+
+            elif self.temperature < 180 and self.timer == 30 or 35:
+                Print("Ping!")
+                Print("Your cake is not well baked, you must have set a temperature too low for the time specified.")
+                Print("Here is your cake.")
+
+            else:
+                Print("Ping!")
+                Print("You have not made your best cake yet and you have a long way to go.")
+                Print("Have your cake anyways.")
+        if
 
 if __name__ == '__main__':
     startBaking = Oven()
