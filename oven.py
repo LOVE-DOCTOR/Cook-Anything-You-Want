@@ -38,8 +38,8 @@ class Oven:
 
         return self.state
 
-    def setTemp(self, temperature_type: int):
-        if temperature_type == 2:
+    #def setTemp(self, temperature_type: int):
+     #   if temperature_type == 2:
 
 
 
@@ -92,7 +92,7 @@ class Oven:
             while True:
                 try:
                     self.temperature = int(input("Set temperature here(in °C) 0°C - 250°C: "))
-                    if 0 < self.temperature > 250:
+                    if self.temperature < 0 or self.temperature > 250:
                         print("You can only set a temperature in the given range.")
                     else:
                         break
@@ -136,8 +136,9 @@ class Oven:
                 Print("Ping!")
                 Print("You have not made your best cake yet and you have a long way to go.")
                 Print("Have your cake anyways.")
-        if
+       # if
 
 if __name__ == '__main__':
-    startBaking = Oven()
-    startBaking.startMix()
+    startBake = Oven()
+    startBake.startMix()
+    startBake.startBaking()
