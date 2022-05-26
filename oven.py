@@ -1,5 +1,5 @@
 import time
-from Food.Cake import HomeMadeCake, Print
+from Food.Cake import HomeMadeCake, Print, ClassicCupcake
 
 
 def setTempToCelsius(temperature_type: int) -> float:
@@ -49,6 +49,15 @@ class Oven:
                 print("Select y/n")
 
         return self.state
+
+    def checkOvenState(self) -> None:
+        state = self.putOvenOn()
+        if state is False:
+            print("Oven is not on.")
+            time.sleep(1)
+            print("Sleeping...")
+        else:
+            pass
 
     def bakeAtCelsius(self, type_: float = 0, tt=0):
         while True:
@@ -119,19 +128,21 @@ class Oven:
 
         if foodToBake == 1:
             Print("What kind of cake would you like to bake?")
-            Print("1. Homemade Cake")
+            Print("1. Homemade Cake \n 2. Classic Cupcakes")
             cakeType = int(input("Here: "))
+
             if cakeType == 1:
                 cake = HomeMadeCake()
                 cake.mixIngredients()
-                state = self.putOvenOn()
-                if state is False:
-                    print("Oven is not on.")
-                    time.sleep(1)
-                    print("Sleeping...")
-                else:
-                    pass
+                self.checkOvenState()
+
+            elif cakeType == 2:
+                cake = ClassicCupcake()
+                cake.mixIngredients()
+                self.checkOvenState()
+
             return cakeType
+
         else:
             print("Option not available yet")
 
@@ -154,6 +165,7 @@ class Oven:
         if temperature_type == 1:
             self.bakeAtCelsius()
         elif temperature_type == 2:
+
             tt_type = 2
             type__ = setTempToCelsius(2)
             self.bakeAtCelsius(type__, tt_type)

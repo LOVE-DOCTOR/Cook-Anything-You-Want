@@ -10,19 +10,17 @@ import random
 # The class also has an instance variable successMessage, which is initialized to a list of strings.
 # The class also has an instance variable numbers, which is initialized to a list of integers.
 class Cake:
-    def __init__(self, ingredients: any = None, home_made_cake: bool = False) -> None:
+    def __init__(self, ingredients: any = None) -> None:
         """
         The function __init__ is a constructor that initializes the class Cake with the attributes ingredients,
         home_made_cake, messagesList, messagesList2, successMessage, and numbers
 
         :param ingredients: a list of ingredients that the player has to use to make the cake
-        :param home_made_cake: a boolean that is True if the cake is homemade and False if it is not, defaults to False
-        (optional)
         """
+
         if ingredients is None:
             ingredients = []
         self.ingredients = ingredients
-        self.home_made_cake = home_made_cake
         self.messagesList = ["You are a culinary disaster and should not be allowed near the stove.",
                              "I know you're trying to make a homemade cake, but your recipe is turning a disaster.",
                              "I don't know who told you to try baking, maybe you'd be better off doing the eating.",
@@ -36,6 +34,8 @@ class Cake:
         self.successMessage = ["Perfect!", "Great!", "yum-yum", "Delicious"]
         self.numbers = [1, 2, 3, 4]
 
+        # A function that checks if the user has selected the correct option.
+
 
 def Print(message: any) -> None:
     """
@@ -45,7 +45,7 @@ def Print(message: any) -> None:
     :type message: any
     """
     print(message)
-    time.sleep(0.0001)
+    time.sleep(0.01)
 
 
 # We are baking a cake, and we need to follow the instructions to bake it
@@ -54,10 +54,8 @@ class HomeMadeCake(Cake):
         """
         The function __init__() is a constructor that initializes the attributes of the class Cake
         """
-        Cake.__init__(self, ["flour", "egg", "baking soda", "vanilla essence", "powdered sugar", "butter", "milk"],
-                      home_made_cake=True)
+        Cake.__init__(self, ["flour", "egg", "baking soda", "vanilla essence", "powdered sugar", "butter", "milk"])
 
-    # A function that checks if the user has selected the correct option.
     def CheckSuccess(self, correct_option: int) -> None:
 
         while True:
@@ -149,3 +147,82 @@ class HomeMadeCake(Cake):
         Print("Blending it in...")
         Print("This is important to camouflage the smell of the eggs and make the cake taste delicious")
         Print("It is time to bake the cake now")
+
+
+class ClassicCupcake(Cake):
+    def __init__(self):
+        Cake.__init__(self, ["1 3/4 flour(not self-rising)", "1 1/4 cups unbleached all-purpose flour", "2 cups sugar",
+                             "1 tbsp. baking powder", "3/4 tsp. salt", "4 sticks unsalted cubed butter", "4 large eggs",
+                             "1 cup whole milk", "1 tsp. pure vanilla extract", "6 cups confectioners' sugar",
+                             "1/2 cup milk", "2 tsp. vanilla extract"])
+
+    def CheckSuccess(self, correct_option: int) -> None:
+
+        while True:
+
+            try:
+                doFirstStep = int(input("Select 1, 2 or 3: "))
+
+                if doFirstStep == correct_option:
+                    Print(random.choice(self.successMessage))
+                    break
+
+                elif doFirstStep != correct_option:
+                    Print(random.choice(self.messagesList))
+                    Print("Try again!")
+
+            except ValueError:
+                print("Please select from the available options.")
+
+    def listIngredients(self) -> None:
+        Print("We will be baking our Classic Cupcake with the following ingredients.")
+        Print(self.ingredients[0])
+        Print(self.ingredients[1])
+        Print(self.ingredients[2])
+        Print(self.ingredients[3])
+        Print(self.ingredients[4])
+        Print(self.ingredients[5])
+        Print(self.ingredients[6])
+        Print(self.ingredients[7])
+        Print(self.ingredients[8])
+        Print(self.ingredients[9])
+        Print(self.ingredients[10])
+        Print(self.ingredients[11])
+
+    def mixIngredients(self) -> None:
+        self.listIngredients()
+
+        Print("Lining up cupcake pan with paper liners.")
+        Print("Setting pan aside")
+        Print("Now that this has been done.")
+        Print("What do you do next?")
+        print("1. Place the cupcake pan in the oven to preheat it.")
+        print("2. Fill the baking cups with milk.")
+        print("3. Combine the flour, sugar, baking powder and salt in a bowl.")
+        self.CheckSuccess(3)
+
+        Print("Mixing the ingredients together")
+        Print("Ingredients are now perfectly mixed")
+        Print("What do you do next?")
+        print("1. Add the butter to the mixture and then eggs")
+        print("2. Add sugar to the mixture and then butter.")
+        print("3. Add milk to the mixture and then eggs.")
+        self.CheckSuccess(1)
+
+        Print("Adding 4 sticks of unsalted cubed butter to the mixture.")
+        Print("Mixing...")
+        Print("The butter is now coated with flour")
+        Print("Breaking the eggs")
+        Print("Adding the eggs to the mixture and mixing thoroughly")
+        Print("All the eggs are now fully incorporated into the mixture")
+        Print("What do you do next?")
+        print("1. Add sugar to the mixture and mix it.")
+        print("2. Add milk and vanilla extract to the mixture and mix it.")
+        print("3. Add salt to the mixture and mix it.")
+        self.CheckSuccess(2)
+
+        Print("Adding 1 cup of milk and 1 teaspoon of vanilla extract to the batter")
+        Print("Mixing thoroughly")
+        Print("The ingredients are now completely mixed")
+        Print("Filling 2/3 of each baking cup with the batter")
+        Print("It's time to bake")
