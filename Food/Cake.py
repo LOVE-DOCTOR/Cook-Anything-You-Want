@@ -10,7 +10,7 @@ import random
 # The class also has an instance variable successMessage, which is initialized to a list of strings.
 # The class also has an instance variable numbers, which is initialized to a list of integers.
 class Cake:
-    def __init__(self, ingredients=None, home_made_cake=False):
+    def __init__(self, ingredients: any = None, home_made_cake: bool = False) -> None:
         """
         The function __init__ is a constructor that initializes the class Cake with the attributes ingredients,
         home_made_cake, messagesList, messagesList2, successMessage, and numbers
@@ -45,7 +45,7 @@ def Print(message: any) -> None:
     :type message: any
     """
     print(message)
-    time.sleep(2)
+    time.sleep(0.0001)
 
 
 # We are baking a cake, and we need to follow the instructions to bake it
